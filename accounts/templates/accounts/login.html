@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block alert %}
+
+{% endblock %}
+
+{% block login %}
+	<div class="large-offset-3 large-6 columns ml-2 mt-2">
+		<form action="/auth/login/" method="post">
+			{% csrf_token %}
+			<label for="username">Имя</label>
+			<input type="text" name="username" id="username">
+			<label for="password">Пароль</label>
+			<input type="password" name="password" id="password">
+			<input class="button" type="submit" value="Войти"
+			>
+			{% if login_error %}
+				<label class="text-danger">{{ login_error }}</label>
+			{% endif %}
+			<div class="form-check ml-auto mt-2 mb-3" >
+				<input class="form-check-input" type="checkbox" id="guest" onchange="check()">
+				<label class="form-check-label" for="guest">
+					Guest sign in
+				</label>
+			</div>
+		</form>
+	</div>
+	<script>
+		function check() {
+			var txtUser = "guestApp";
+			var txtPass = "__pass__";
+			if (document.getElementById("guest").checked == true) {
+				document.getElementById("username").value = txtUser;
+				document.getElementById("password").value = txtPass;
+			} else {
+				document.getElementById("username").value = '';
+				document.getElementById("password").value = '';
+			}
+		}
+	</script>
+
+{% endblock %}

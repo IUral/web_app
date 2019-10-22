@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block alert %}
+{% endblock %}
+
+{% block products %}
+	<form action="{% url 'order' %}" method="post">
+		{% csrf_token %}
+		<div class="container mt-3">
+			<div class="row">
+				<div class="col">
+					<div class="alert alert-primary" role="alert">
+						<h5>Выбери товар</h5>
+					</div>
+				</div>
+				<div class="col">
+					<div class="alert alert-info" role="alert">
+						<h5>{{ products_1 }}</h5>
+						<div class="col-check">
+							<input class="col-check-input" type="checkbox" onclick="sum_1({{ products_1_cost }})" id="check1" />
+							<label class="col-check-label" for="check1">Выбрать</label>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="alert alert-info" role="alert">
+						<h5>{{ products_2 }}</h5>
+						<div class="col-check">
+							<input class="col-check-input" type="checkbox" id="check2" onclick="sum_2({{ products_2_cost }})">
+							<label class="col-check-label" for="check2">Выбрать</label>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="alert alert-info" role="alert">
+						<h5>{{ products_3 }}</h5>
+						<div class="col-check">
+							<input class="col-check-input" type="checkbox" id="check3" onclick="sum_3({{ products_3_cost }})">
+							<label class="col-check-label" for="check3">Выбрать</label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row-12">
+				<div class="alert alert-secondary" role="alert">
+					<label for="out"><h5>Итого:</h5></label>
+					<input type="text" id="out" name="out" value='0' readonly >
+				</div>
+			</div>
+			<button type="submit" class="btn btn-outline-success">Оплатить покупку</button>
+		</div>
+	</form>
+
+
+	<script type='text/javascript'>
+		function sum_1(val) {
+			if (document.getElementById("check1").checked == true) {
+				totalSum(val);
+				
+			}
+			else { 
+				totalMinus(val)
+			}
+		}
+
+		function sum_2(val) {
+			if (document.getElementById("check2").checked == true) {
+				totalSum(val);
+			}
+			else { 
+				totalMinus(val)
+			}
+		}
+
+		function sum_3(val) {
+			if (document.getElementById("check3").checked == true) {
+				totalSum(val);
+			}
+			else { 
+				totalMinus(val)
+			}
+		}
+
+		function totalSum(num) {
+				document.getElementById("out").value = Number(document.getElementById("out").value) + num
+		}
+		
+		function totalMinus(num) {
+			if (document.getElementById("out").value != 0) {
+				document.getElementById("out").value = Number(document.getElementById("out").value) - num
+			}
+		}		
+	</script>
+{% endblock %}

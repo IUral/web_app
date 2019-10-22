@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock%}</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}"> 
+
+	{% block styles %}{% endblock %}
+
+    <script type="text/javascript" src="{% static "jquery/jquery-3.4.1.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "popper/dist/umd/popper.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+
+	
+	{% block scripts %}{% endblock %}
+</head>
+<body>
+	<div class="alert alert-primary" role="alert">
+		<ul class="right">
+			{% if username %}
+				<li><a href="/auth/logout/">Выйти ({{ username }})</a></li>
+			{% else %}
+				<!-- <li><a href="/auth/login/">Войти</a></li> -->
+			{% endif %}
+		</ul>
+		{% block alert %}{% endblock %}
+	</div>
+	{% block main %}{% endblock %}
+	{% block register %}{% endblock %}
+	{% block content %}{% endblock %}
+	{% block login %}{% endblock %}
+	{% block products %}{% endblock %}
+	{% block order %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Index{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static "profile_user/css/index.css" %}" >
+{% endblock %}
+
+{% block alert %}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'create_data' %}" method="post">
+        {% csrf_token %}
+        <div class="needs_validation" novalidate>
+            <div class="form-row mt-3 ml-2">
+                <div class="col-md-3 mb-3 ">
+                    <label for="validationDefault01">Имя*</label>
+                    <input type="text" pattern="^[A-Za-zА-Яа-яЁё\s]+$" class="form-control" id="validationDefault01" name="firstname" placeholder="first name" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault02">Фамилия*</label>
+                    <input type="text" pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+                    class="form-control" id="validationDefault02" name="lastname" placeholder="last name" required>
+                </div>
+                <div class="col-md-1 mb-3">
+                    <label for="validationDefault03">Возраст*</label>
+                    <input type="number" min="1" max="120" class="form-control" id="validationDefault03" name="age" placeholder="Age" required
+                    >
+                </div>
+            </div>
+            <div class="form-group col-md-4 mt-2 mb-3">
+                <select class="custom-select" name="activity" required>
+                    <option style="font-weight:bolder;" value="">Деятельность в области ...</option>
+                    <option value="eco">Economy</option>
+                    <option value="med">Medecine</option>
+                    <option value="ind">Industry</option>
+                    <option value="inf">IT</option>
+                    <option value="spa">Space</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group col-md-4 mb-3">
+            <label for="inputEmail">Email</label>
+            <input type="text" pattern=".+@.+\..+" name="email" placeholder="name@example.com" 
+            class="form-control" id="inputEmail">
+        </div>
+        <div class="form-group col-md-4 mb-3">
+            <label for="inputLink">Link</label>
+            <input type="text" 
+            pattern="[-a-zA-Z0-9@:%_\+.~#?&\/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?" placeholder="facebook.com" name="link"
+            class="form-control" id="inputLink">
+        </div>
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
+            {% if user_exists %}
+                <label class="text-danger">{{ user_exists }}</label>
+            {% endif %}
+        </div>
+    </form>
+
+{% endblock %}

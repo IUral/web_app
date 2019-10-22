@@ -1,0 +1,1 @@
+[{"model": "products.product", "pk": 1, "fields": {"name": "Ski pass", "cost": "2330.01"}}, {"model": "products.product", "pk": 2, "fields": {"name": "Hotel", "cost": "2999.99"}}, {"model": "products.product", "pk": 3, "fields": {"name": "Dinner", "cost": "670.00"}}]
