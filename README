@@ -4,5 +4,5 @@
 4. Заполняем модель product начальными данными: 
 	- cd /path/to/test_task
 	- python manage.py loaddata products/fixtures/initial_data.json
-5. /path/to/test_task$ python manage.py runserver
+5. /path/to/app$ python manage.py runserver
 6. Go to http://127.0.0.1:8000/
